@@ -11,7 +11,7 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            PYTHONPATH /home/circleci/bot
+            PYTHONPATH=/home/circleci/bot
             pip install --upgrade pip
             pip install -r requirements.txt
             pytest
