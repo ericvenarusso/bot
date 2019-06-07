@@ -1,4 +1,4 @@
-from scrap import Scrap
+from tool.scrap import Scrap
 from config import config
 
 class Main:

@@ -1,6 +1,5 @@
 import pytest
-from scrap import Scrap
-import pdb
+from tools.scrap import Scrap
 from bs4 import BeautifulSoup
 
 def test_get_html():
