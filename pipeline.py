@@ -1,17 +1,12 @@
-from tool.scrap import Scrap
+from tools.scrap import Scrap
 from config import config
 
-class Main:
 
-	def __init__(self):
-		self.titles = None
-		self.links = None
+def pipeline() -> dict:
+	soup_handler = Scrap.get_html(config.SITE+config.PROMOTIONAL_PAGE)
 
-	def pipeline(self):
-		soup_handler = Scrap.get_html(config.SITE+config.PROMOTIONAL_PAGE)
+	text = Scrap.get_data(soup_handler, 'a', 'thread_title_', text = True)
+	links = Scrap.get_data(soup_handler, 'a', 'thread_title_', obj = 'href')
+	site_links = Scrap.build_link(config.SITE, links)
 
-		self.text = Scrap.get_data(soup_handler, 'a', 'thread_title_', text = True)
-		self.links = Scrap.get_data(soup_handler, 'a', 'thread_title_', obj = 'href')
-		self.links = Scrap.build_link(config.SITE, self.links)
-
-		return dict(zip(self.text, self.links))
+	return dict(zip(text, site_links))
